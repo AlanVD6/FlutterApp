@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           theme: ThemeSettings.setTheme(value),
           home: const LoginScreen(),
-           // En main.dart
+
             routes: {
             "/dash": (context) => const DashboardScreen(),
             "/reto": (context) => const ChallengeScreen(),

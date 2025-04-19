@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/mode/product.dart';
 import 'package:flutter_application_1/screens/product_detail_screen.dart';
+import 'package:flutter_application_1/screens/challenge_screen2.dart';
 import 'package:lottie/lottie.dart';
 import 'dart:async';
 
@@ -10,7 +11,7 @@ class ChallengeScreen extends StatefulWidget {
   @override
   State<ChallengeScreen> createState() => _ChallengeScreenState();
 }
-  //Lista de los productos
+
 class _ChallengeScreenState extends State<ChallengeScreen> {
   final List<Product> productos = [
     Product(
@@ -18,11 +19,11 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
       name: 'Pirma Edge',
       price: 769.99,
       description: 'Zapatos de corte moderno con detalles en relieve, ideales para un look sofisticado y cómodo en entornos urbanos.',
-      imageUrl: 'assets/Shop/Pirma_Edge.jpg',
+      imageUrl: 'assets/ShopH/Pirma_Edge.jpg',
       galleryImages: [
-        'assets/Shop/Pirma_Edge.jpg',
-        'assets/Shop/Pirma_Edge2.jpg',
-        'assets/Shop/Pirma_Edge3.jpg',
+        'assets/ShopH/Pirma_Edge.jpg',
+        'assets/ShopH/Pirma_Edge2.jpg',
+        'assets/ShopH/Pirma_Edge3.jpg',
       ],
       availableSizes: [25, 26, 27, 28, 29, 30],
       availableColors: ['Negro', 'Azul', 'Gris'],
@@ -32,10 +33,10 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
       name: 'Vans Urban X',
       price: 499.99,
       description: 'Estilo urbano con máxima comodidad para el día a día.',
-      imageUrl: 'assets/Shop/Vans_night.jpg',
+      imageUrl: 'assets/ShopH/Vans_night.jpg',
       galleryImages: [
-        'assets/Shop/Vans_night.jpg',
-        'assets/Shop/Vans_night2.jpg',
+        'assets/ShopH/Vans_night.jpg',
+        'assets/ShopH/Vans_night2.jpg',
       ],
       availableSizes: [26, 27, 28, 29, 30, 31],
       availableColors: ['Negro', 'Blanco', 'Rojo'],
@@ -45,10 +46,10 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
       name: 'Converse Bota',
       price: 1799.99,
       description: 'Diseño urbano y ligereza extrema: el calzado perfecto para tu rutina diaria.',
-      imageUrl: 'assets/Shop/Converse.jpg',
+      imageUrl: 'assets/ShopH/Converse.jpg',
       galleryImages: [
-        'assets/Shop/Converse.jpg',
-        'assets/Shop/Converse2.jpg',
+        'assets/ShopH/Converse.jpg',
+        'assets/ShopH/Converse2.jpg',
       ],
       availableSizes: [25, 26, 27, 28, 29, 30],
       availableColors: ['Negro', 'Blanco', 'Azul'],
@@ -58,13 +59,13 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
       name: 'Chancla - Sandalia',
       price: 199.99,
       description: 'Herramienta multipropósito: mata moscas, aplasta cucarachas y educa hijos rebeldes.\nAdvertencia: Puede causar flashbacks de infancia',
-      imageUrl: 'assets/Shop/Chancla.jpg',
+      imageUrl: 'assets/ShopH/Chancla.jpg',
       galleryImages: [
-        'assets/Shop/Chancla.jpg',
-        'assets/Shop/Chancla2.jpg',
-        'assets/Shop/Chancla3.jpg',
+        'assets/ShopH/Chancla.jpg',
+        'assets/ShopH/Chancla2.jpg',
+        'assets/ShopH/Chancla3.jpg',
       ],
-      availableSizes: [25, 26, 27, 28,29,30],
+      availableSizes: [25, 26, 27, 28, 29, 30],
       availableColors: ['Negro', 'Azul', 'Rojo'],
     ),
     Product(
@@ -72,11 +73,11 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
       name: 'Pirma Blue',
       price: 599.99,
       description: 'El balance perfecto entre estilo urbano y confort excepcional.',
-      imageUrl: 'assets/Shop/Pirma_Blue.jpg',
+      imageUrl: 'assets/ShopH/Pirma_Blue.jpg',
       galleryImages: [
-        'assets/Shop/Pirma_Blue.jpg',
-        'assets/Shop/Pirma_Blue2.jpg',
-        'assets/Shop/Pirma_Blue3.jpg',
+        'assets/ShopH/Pirma_Blue.jpg',
+        'assets/ShopH/Pirma_Blue2.jpg',
+        'assets/ShopH/Pirma_Blue3.jpg',
       ],
       availableSizes: [27, 28, 29, 30],
       availableColors: ['Azul', 'Blanco', 'Gris'],
@@ -86,11 +87,11 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
       name: 'Fila Sports',
       price: 2299.99,
       description: 'Desde la cancha hasta la calle: máximo confort sin sacrificar el look urbano.',
-      imageUrl: 'assets/Shop/Fila_Sports.jpg',
+      imageUrl: 'assets/ShopH/Fila_Sports.jpg',
       galleryImages: [
-        'assets/Shop/Fila_Sports.jpg',
-        'assets/Shop/Fila_Sports2.jpg',
-        'assets/Shop/Fila_Sports3.jpg',
+        'assets/ShopH/Fila_Sports.jpg',
+        'assets/ShopH/Fila_Sports2.jpg',
+        'assets/ShopH/Fila_Sports3.jpg',
       ],
       availableSizes: [25, 26, 27, 28, 29],
       availableColors: ['Blanco', 'Rojo', 'Negro'],
@@ -100,10 +101,10 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
       name: 'Nike Air Flex',
       price: 1699.99,
       description: 'Amortiguación premium y flexibilidad mejorada.',
-      imageUrl: 'assets/Shop/Nike_Air.jpg',
+      imageUrl: 'assets/ShopH/Nike_Air.jpg',
       galleryImages: [
-        'assets/Shop/Nike_Air.jpg',
-        'assets/Shop/Nike_Air2.jpg',
+        'assets/ShopH/Nike_Air.jpg',
+        'assets/ShopH/Nike_Air2.jpg',
       ],
       availableSizes: [26, 27, 28, 29, 30],
       availableColors: ['Negro', 'Blanco', 'Rojo'],
@@ -113,12 +114,12 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
       name: 'French elegance',
       price: 199.99,
       description: 'Para ocasiones formales que exigen sofisticación sin sacrificar comodidad.',
-      imageUrl: 'assets/Shop/Clasicos.jpg',
+      imageUrl: 'assets/ShopH/Clasicos.jpg',
       galleryImages: [
-        'assets/Shop/Clasicos.jpg',
-        'assets/Shop/Clasicos2.jpg',
+        'assets/ShopH/Clasicos.jpg',
+        'assets/ShopH/Clasicos2.jpg',
       ],
-      availableSizes: [25, 26, 27,28,29],
+      availableSizes: [25, 26, 27, 28, 29],
       availableColors: ['Negro', 'Café'],
     ),
     Product(
@@ -126,10 +127,10 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
       name: 'Classic Vintage',
       price: 299.99,
       description: 'Comodidad que dura todo el día, ideal para trabajo.',
-      imageUrl: 'assets/Shop/Classic_Vintage.jpg',
+      imageUrl: 'assets/ShopH/Classic_Vintage.jpg',
       galleryImages: [
-        'assets/Shop/Classic_Vintage.jpg',
-        'assets/Shop/Classic_Vintage2.jpg',
+        'assets/ShopH/Classic_Vintage.jpg',
+        'assets/ShopH/Classic_Vintage2.jpg',
       ],
       availableSizes: [27, 28, 29, 30],
       availableColors: ['Café', 'Negro'],
@@ -139,39 +140,62 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
       name: 'Vans Modern',
       price: 1199.99,
       description: 'No elijas entre moda y comodidad: estos tenis lo tienen todo.',
-      imageUrl: 'assets/Shop/Vans_modern.jpg',
+      imageUrl: 'assets/ShopH/Vans_modern.jpg',
       galleryImages: [
-        'assets/Shop/Vans_modern.jpg',
-        'assets/Shop/Vans_modern2.jpg',
+        'assets/ShopH/Vans_modern.jpg',
+        'assets/ShopH/Vans_modern2.jpg',
       ],
       availableSizes: [26, 27, 28, 29],
       availableColors: ['Negro', 'Blanco', 'Gris'],
     ),
   ];
-
-  //ESTADO DE CARGA
   bool isLoading = true;
+  bool isWomenSection = false;
 
   @override
   void initState() {
     super.initState();
-
-    Future.delayed(const Duration(seconds: 4), () {
-      if (mounted) {
-        setState(() {
-          isLoading = false;
-        });
-      }
-    });
+    _loadCatalog();
   }
-//Titulo de la Empresa
+
+  Future<void> _loadCatalog() async {
+    setState(() {
+      isLoading = true;
+    });
+    
+    await Future.delayed(const Duration(seconds: 4));
+    
+    if (mounted) {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  void _toggleSection() {
+    setState(() {
+      isWomenSection = !isWomenSection;
+      isLoading = true;
+    });
+    _loadCatalog();
+    
+    if (isWomenSection) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const ChallengeScreen2(),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Center(
           child: Text(
-            'Shop DarkStride',
+            'Shop DarkStride - Hombres',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.white,
@@ -181,16 +205,39 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
         backgroundColor: Colors.indigo,
         elevation: 0,
         centerTitle: true,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: Row(
+              children: [
+                const Text(
+                  'Hombres',
+                  style: TextStyle(color: Colors.white),
+                ),
+                Switch(
+                  value: isWomenSection,
+                  onChanged: (value) => _toggleSection(),
+                  activeColor: Colors.pink,
+                  inactiveThumbColor: Colors.indigo,
+                ),
+                const Text(
+                  'Mujeres',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
-      //Apartado de descuento 
+
       body: Stack(
         children: [
-          // Contenido principal
+
           if (!isLoading)
             SingleChildScrollView(
               child: Column(
                 children: [
-                  // Banner promocional
+
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.all(20),
@@ -242,8 +289,6 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
                       ],
                     ),
                   ),
-
-                  // Lista de productos
                   Padding(
                     padding: const EdgeInsets.all(12),
                     child: Column(
@@ -273,7 +318,6 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
               ),
             ),
 
-          // Overlay de carga
           if (isLoading)
             Container(
               color: Colors.black.withOpacity(0.7),
@@ -288,7 +332,7 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
                     ),
                     const SizedBox(height: 20),
                     const Text(
-                      'Cargando catálogo...',
+                      'Cargando catálogo hombres...',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,
@@ -325,7 +369,7 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Imagen del producto con indicador de galería
+
               Stack(
                 children: [
                   ClipRRect(
@@ -364,10 +408,9 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
                     ),
                 ],
               ),
-              
+
               const SizedBox(height: 12),
 
-              // Nombre y precio
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -391,10 +434,8 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
                   ),
                 ],
               ),
-              
-              const SizedBox(height: 8),
 
-              // Descripción
+              const SizedBox(height: 8),
               Text(
                 producto.description,
                 maxLines: 2,
@@ -404,10 +445,8 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
                   color: Colors.grey[700],
                 ),
               ),
-              
-              const SizedBox(height: 12),
 
-              // Tallas y colores
+              const SizedBox(height: 12),
               Wrap(
                 spacing: 8,
                 runSpacing: 6,
@@ -428,10 +467,9 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
                   ),
                 ],
               ),
-              
+
               const SizedBox(height: 12),
-              
-              // Botón de detalles
+      
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -452,7 +490,7 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
                     padding: const EdgeInsets.symmetric(vertical: 12),
                   ),
                   child: const Text(
-                    'VER ',
+                    'VER DETALLES',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
