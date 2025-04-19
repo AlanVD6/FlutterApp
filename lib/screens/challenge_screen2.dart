@@ -193,7 +193,7 @@ class _ChallengeScreen2State extends State<ChallengeScreen2> {
       appBar: AppBar(
         title: const Center(
           child: Text(
-            'Shop DarkStride - Mujeres',
+            'DarkStride - Mujeres',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.white,
@@ -276,7 +276,7 @@ class _ChallengeScreen2State extends State<ChallengeScreen2> {
                             ),
                             Icon(Icons.verified_user, color: Colors.white),
                             Text(
-                              'Garantía 6 meses',
+                              'Garantía 3 meses',
                               style: TextStyle(color: Colors.white),
                             ),
                           ],

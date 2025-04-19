@@ -195,7 +195,7 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
       appBar: AppBar(
         title: const Center(
           child: Text(
-            'Shop DarkStride - Hombres',
+            'DarkStride - Hombres',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.white,
@@ -295,7 +295,7 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
                       children: [
                         const SizedBox(height: 10),
                         const Text(
-                          'NUESTROS PRODUCTOS DE TEMPORADA',
+                          'PRODUCTOS DE TEMPORADA',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
