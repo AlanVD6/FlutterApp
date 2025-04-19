@@ -11,31 +11,38 @@ class DashboardScreen extends StatelessWidget{
     return Scaffold(
 
     drawer: SidebarX(
-      headerBuilder: (context, extended) {
-
-        return const UserAccountsDrawerHeader(
-          currentAccountPicture: CircleAvatar(
-            backgroundImage: NetworkImage('https://i.pravatar.cc/300'),
-          ),
-          accountName: Text('Alansin '), 
-          accountEmail: Text('Ghoul616@gmal.com')
-          );
-      },
-      extendedTheme: const SidebarXTheme(
-        width: 200
+    headerBuilder: (context, extended) {
+    return const UserAccountsDrawerHeader(
+      currentAccountPicture: CircleAvatar(
+        backgroundImage: NetworkImage('https://i.pravatar.cc/300'),
       ),
-    controller: SidebarXController(selectedIndex: 0,extended: true),
-    items: [
-      SidebarXItem(
-
-        onTap: (){ 
-          Navigator.pop(context);
-          Navigator.pushNamed(context,'/reto');
-        },
-        icon: Icons.home, label: 'Shop App'
-        )
-        ],
+      accountName: Text('Alansin'), 
+      accountEmail: Text('Ghoul616@gmal.com')
+    );
+  },
+  extendedTheme: const SidebarXTheme(
+    width: 200
+  ),
+  controller: SidebarXController(selectedIndex: 0, extended: true),
+  items: [
+    SidebarXItem(
+      onTap: (){ 
+        Navigator.pop(context);
+        Navigator.pushNamed(context, '/reto');
+      },
+      icon: Icons.shopping_bag, 
+      label: 'Shop App'
     ),
+    SidebarXItem(
+      onTap: (){ 
+        Navigator.pop(context);
+        Navigator.pushNamed(context, '/contador');
+      },
+      icon: Icons.add, 
+      label: 'Contador'
+    ),
+  ],
+),
 
     appBar: AppBar(
       title: Text('panel de control'),
@@ -63,6 +70,6 @@ class DashboardScreen extends StatelessWidget{
       ],
     ),
     );
-  
+
   }
 }
