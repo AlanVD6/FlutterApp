@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/Popular_screen.dart';
+import 'package:flutter_application_1/screens/detail_popular_movie.dart';
 import 'package:flutter_application_1/screens/challenge_screen.dart';
 import 'package:flutter_application_1/screens/dashboard_screen.dart';
 import 'package:flutter_application_1/screens/contador_screen.dart';
@@ -26,7 +27,8 @@ class MyApp extends StatelessWidget {
             "/dash": (context) => const DashboardScreen(),
             "/reto": (context) => const ChallengeScreen(),
             "/contador": (context) => const ContadorScreen(),
-            "/api" : (context) => const PopularScreen()
+            "/api" : (context) => const PopularScreen(),
+            "/detail" : (context) => const DetailPopularMovie()
             }
         );
       }
