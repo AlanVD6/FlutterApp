@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/model/product.dart';
-import 'package:lottie/lottie.dart'; // Importar Lottie
+import 'package:lottie/lottie.dart'; 
 
 class ProductDetailScreen2 extends StatefulWidget {
   final Product product;
