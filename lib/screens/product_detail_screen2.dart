@@ -19,7 +19,7 @@ class _ProductDetailScreen2State extends State<ProductDetailScreen2> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
   late Timer _timer;
-  bool _showAnimation = false; // Controlador para mostrar/ocultar animación
+  bool _showAnimation = false; // mostrar/ocultar animación
 
   @override
   void initState() {

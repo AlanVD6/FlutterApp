@@ -6,7 +6,7 @@ class Product {
   final String imageUrl;
   final List<String> galleryImages;
   final List<int> availableSizes;
-  final List<String> availableColors; // Nuevo campo para colores disponibles
+  final List<String> availableColors; 
 
   Product({
     required this.id,
@@ -16,6 +16,6 @@ class Product {
     required this.imageUrl,
     required this.galleryImages,
     required this.availableSizes,
-    this.availableColors = const ['Negro', 'Blanco', 'Gris'], // Colores por defecto
+    this.availableColors = const ['Negro', 'Blanco', 'Gris'], 
   });
 }

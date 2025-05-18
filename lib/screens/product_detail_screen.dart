@@ -19,8 +19,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
   late Timer _timer;
-  bool _showAnimation = false; // Controlador para mostrar/ocultar animación
+  bool _showAnimation = false; // mostrar/ocultar animación
 
+  //timer del carrusel 
   @override
   void initState() {
     super.initState();
@@ -52,7 +53,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     super.dispose();
   }
 
-  // Función para mostrar la animación
+  // mostrar la animación
   void _showAnimationAndDialog(BuildContext context) {
     setState(() {
       _showAnimation = true;
@@ -102,6 +103,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     ),
                   ),
                   child: Stack(
+                    //carrusel 
                     children: [
                       PageView.builder(
                         controller: _pageController,
