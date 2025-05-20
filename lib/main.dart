@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
             "/reto": (context) => const ChallengeScreen(),
             "/contador": (context) => const ContadorScreen(),
             "/api" : (context) => const PopularScreen(),
-            "/detail" : (context) => const DetailPopularMovie()
+            "/detail" : (context) => const DetailPopularMovie(),
             }
         );
       }
