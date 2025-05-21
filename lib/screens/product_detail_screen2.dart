@@ -19,7 +19,7 @@ class _ProductDetailScreen2State extends State<ProductDetailScreen2> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
   late Timer _timer;
-  bool _showAnimation = false; // mostrar/ocultar animación
+  bool _showAnimation = false; 
 
   @override
   void initState() {
@@ -58,7 +58,7 @@ class _ProductDetailScreen2State extends State<ProductDetailScreen2> {
       _showAnimation = true;
     });
 
-    // Ocultar la animación después de 4 segundos
+  
     Future.delayed(const Duration(seconds: 4), () {
       setState(() {
         _showAnimation = false;

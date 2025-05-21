@@ -49,14 +49,6 @@ class DashboardScreen extends StatelessWidget{
       icon: Icons.add, 
       label: 'Popular Movies'
     ),
-    SidebarXItem(
-  onTap: (){ 
-    Navigator.pop(context);
-    Navigator.pushNamed(context, '/favorites');
-  },
-  icon: Icons.favorite, 
-  label: 'Favoritos'
-),
   ],
 ),
 
