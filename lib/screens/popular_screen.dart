@@ -63,7 +63,7 @@ class _PopularScreenState extends State<PopularScreen> {
               width: MediaQuery.of(context).size.width,
               color: Colors.black,
               child: ListTile(
-                onTap: ()=>Navigator.pushNamed(context,'/detail',arguments: popular),
+                onTap: ()=>Navigator.pushNamed(context, '/detail', arguments: popular),
                 title: Text(popular.title,style: TextStyle(color: Colors.white),),
                 trailing: Icon(Icons.chevron_right,size: 50,),
               ),

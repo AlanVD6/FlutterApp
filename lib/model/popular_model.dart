@@ -27,8 +27,8 @@ class PopularModel {
 
   factory PopularModel.fromMap(Map<String, dynamic> movie) {
     return PopularModel(
-      backdropPath: 'https://image.tmdb.org/t/p/w500/${movie['backdrop_path']}'
-      ?? 'https://img.freepik.com/vector-gratis/ups-error-404-ilustracion-concepto-robot-roto_114360-5529.jpg?semt=ais_hybrid&w=740',
+      backdropPath: 'https://image.tmdb.org/t/p/w500/${movie['backdrop_path']}' ??
+          'https://toppng.com/uploads/preview/404-error-error-404-transparent-11563210406bsmsusbbzi.png',
       id: movie['id'],
       originalLanguage: movie['original_language'],
       originalTitle: movie['original_title'],
@@ -37,7 +37,7 @@ class PopularModel {
       posterPath: movie['poster_path'],
       releaseDate: movie['release_date'],
       title: movie['title'],
-      voteAverage: movie['vote_average'],
+      voteAverage: movie['vote_average'].toDouble(),
       voteCount: movie['vote_count'],
     );
   }

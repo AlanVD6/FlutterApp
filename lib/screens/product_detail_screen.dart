@@ -19,9 +19,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
   late Timer _timer;
-  bool _showAnimation = false; // mostrar/ocultar animación
+  bool _showAnimation = false; 
 
-  //timer del carrusel 
+  //inicia el carrusel 
   @override
   void initState() {
     super.initState();
@@ -53,18 +53,18 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     super.dispose();
   }
 
-  // mostrar la animación
+//activa animacion de compra.
   void _showAnimationAndDialog(BuildContext context) {
     setState(() {
       _showAnimation = true;
     });
 
-    // Ocultar la animación después de 4 segundos
+   
     Future.delayed(const Duration(seconds: 4), () {
       setState(() {
         _showAnimation = false;
       });
-      // Mostrar el diálogo de éxito después de la animación
+
       _showPurchaseSuccess(context);
     });
   }
@@ -103,7 +103,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     ),
                   ),
                   child: Stack(
-                    //carrusel 
+                    //carrusel de imagenes Si la imagen está vacía o falla, muestra un ícono de fallback.
                     children: [
                       PageView.builder(
                         controller: _pageController,
@@ -148,7 +148,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           );
                         },
                       ),
-                      
+                      //indicadores del carrusel 
                       if (widget.product.galleryImages.length > 1)
                         Positioned(
                           bottom: 20,
@@ -448,7 +448,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             ),
           ),
           
-          // Animación Lottie
+          // Animación de carga de compra 
           if (_showAnimation)
             Container(
               color: Colors.black.withOpacity(0.5),
@@ -466,6 +466,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     );
   }
 
+//colores de los tenis para los botones 
   Color _getColorFromString(String colorName) {
     switch (colorName.toLowerCase()) {
       case 'negro':
@@ -486,6 +487,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     }
   }
 
+//mesanje de compra exitosa
   void _showPurchaseSuccess(BuildContext context) {
     showDialog(
       context: context,

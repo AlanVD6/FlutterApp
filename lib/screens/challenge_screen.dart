@@ -12,6 +12,7 @@ class ChallengeScreen extends StatefulWidget {
   State<ChallengeScreen> createState() => _ChallengeScreenState();
 }
 
+//productos en catalogo 
 class _ChallengeScreenState extends State<ChallengeScreen> {
   final List<Product> productos = [
     Product(
@@ -157,7 +158,7 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
     super.initState();
     _loadCatalog();
   }
-
+// simula la carga de catalogo 
   Future<void> _loadCatalog() async {
     setState(() {
       isLoading = true;
@@ -171,7 +172,7 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
       });
     }
   }
-
+//alterna entre el catalogo de hombre y mujer 
   void _toggleSection() {
     setState(() {
       isWomenSection = !isWomenSection;
@@ -188,7 +189,7 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
       );
     }
   }
-
+// barra de seleccion y de titulo 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -237,7 +238,7 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
             SingleChildScrollView(
               child: Column(
                 children: [
-
+//Encabezado de oferta 
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.all(20),
@@ -303,6 +304,7 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
                           ),
                         ),
                         const SizedBox(height: 15),
+                        //lista de productos 
                         ListView.builder(
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
@@ -329,7 +331,7 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
                       'assets/loading.json',
                       width: 200,
                       height: 200,
-                    ),
+                    ),//animación 
                     const SizedBox(height: 20),
                     const Text(
                       'Cargando catálogo hombres...',
@@ -445,7 +447,7 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
                   color: Colors.grey[700],
                 ),
               ),
-
+//contenedor de tallas 
               const SizedBox(height: 12),
               Wrap(
                 spacing: 8,
@@ -459,7 +461,7 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
                     backgroundColor: Colors.indigo.shade50,
                   ),
                   Chip(
-                    label: Text(
+                    label: Text( // contenedor de colores 
                       'Colores: ${producto.availableColors.join(', ')}',
                       style: const TextStyle(fontSize: 12),
                     ),
@@ -488,7 +490,7 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     padding: const EdgeInsets.symmetric(vertical: 12),
-                  ),
+                  ),//boton de detalles
                   child: const Text(
                     'VER DETALLES',
                     style: TextStyle(
