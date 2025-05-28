@@ -46,7 +46,7 @@ class DashboardScreen extends StatelessWidget{
         Navigator.pop(context);
         Navigator.pushNamed(context, '/api');
       },
-      icon: Icons.add, 
+      icon: Icons.movie, 
       label: 'Popular Movies'
     ),
     SidebarXItem(

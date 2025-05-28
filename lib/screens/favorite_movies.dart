@@ -1,4 +1,4 @@
-// screens/favorite_movies.dart
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/model/popular_model.dart';
 import 'package:flutter_application_1/utils/favorite_service.dart';

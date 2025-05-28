@@ -59,7 +59,7 @@ class _PopularScreenState extends State<PopularScreen>{
     );
   }
 
-  //generacion de un widget a través de un método
+
   Widget ItemPopular(PopularModel popular){
 
     return ClipRRect(
@@ -78,7 +78,6 @@ class _PopularScreenState extends State<PopularScreen>{
 
           Container(
 
-            //width: MediaQuery.of(context).size.width,
             height: 50,
             color: Colors.black,
             child: ListTile(

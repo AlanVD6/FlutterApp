@@ -1,4 +1,3 @@
-// utils/favorite_service.dart
 import 'package:flutter_application_1/model/popular_model.dart';
 
 class FavoriteService {
