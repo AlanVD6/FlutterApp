@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_application_1/model/popular_model.dart';
 import 'package:flutter_application_1/network/api_actors.dart';
+import 'package:flutter_application_1/network/api_trailer.dart';
 import 'package:flutter_application_1/utils/favorite_service.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class DetailPopularMovie extends StatefulWidget {
   const DetailPopularMovie({super.key});
@@ -14,12 +16,21 @@ class DetailPopularMovie extends StatefulWidget {
 class _DetailPopularMovieState extends State<DetailPopularMovie> {
   late PopularModel movie;
   late Future<List<Actor>> futureActors;
+  late Future<Trailer?> futureTrailer;
+  YoutubePlayerController? _youtubeController;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     movie = ModalRoute.of(context)!.settings.arguments as PopularModel;
     futureActors = ApiActors().fetchActors(movie.id);
+    futureTrailer = ApiTrailer().getTrailer(movie.id);
+  }
+
+  @override
+  void dispose() {
+    _youtubeController?.dispose();
+    super.dispose();
   }
 
   @override
@@ -34,7 +45,7 @@ class _DetailPopularMovieState extends State<DetailPopularMovie> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Imagen + botón flotante
+            // Imagen + Botón de favoritos
             Stack(
               children: [
                 Image.network(
@@ -54,14 +65,11 @@ class _DetailPopularMovieState extends State<DetailPopularMovie> {
                       setState(() {
                         FavoriteService.toggleFavorite(movie);
                       });
-
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content: Text(
-                            wasFavorite
-                                ? 'Película eliminada de favoritos'
-                                : 'Película agregada a favoritos',
-                          ),
+                          content: Text(wasFavorite
+                              ? 'Película eliminada de favoritos'
+                              : 'Película agregada a favoritos'),
                           duration: const Duration(seconds: 2),
                           behavior: SnackBarBehavior.floating,
                           shape: RoundedRectangleBorder(
@@ -95,7 +103,62 @@ class _DetailPopularMovieState extends State<DetailPopularMovie> {
               ],
             ),
 
-            // Detalles de película
+            // Tráiler
+            FutureBuilder<Trailer?>(
+              future: futureTrailer,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircularProgressIndicator();
+                }
+                if (!snapshot.hasData || snapshot.data == null) {
+                  return const Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Text(
+                      'Tráiler no disponible.',
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  );
+                }
+
+                final trailer = snapshot.data!;
+                final videoId = trailer.key;
+
+                _youtubeController ??= YoutubePlayerController(
+                  initialVideoId: videoId,
+                  flags: const YoutubePlayerFlags(
+                    autoPlay: false,
+                    mute: false,
+                  ),
+                );
+
+                return Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Tráiler oficial',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 10),
+                      YoutubePlayer(
+                        controller: _youtubeController!,
+                        showVideoProgressIndicator: true,
+                        progressIndicatorColor: Colors.red,
+                        progressColors: const ProgressBarColors(
+                          playedColor: Colors.red,
+                          handleColor: Colors.redAccent,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+
+            // Detalles de la película
             Padding(
               padding: const EdgeInsets.all(16),
               child: Column(
@@ -104,9 +167,7 @@ class _DetailPopularMovieState extends State<DetailPopularMovie> {
                   Text(
                     movie.title,
                     style: const TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
+                        fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 10),
 
@@ -145,17 +206,17 @@ class _DetailPopularMovieState extends State<DetailPopularMovie> {
                   const Text(
                     "Actores",
                     style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
+                        fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 10),
 
                   FutureBuilder<List<Actor>>(
                     future: futureActors,
                     builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const Center(child: CircularProgressIndicator());
+                      if (snapshot.connectionState ==
+                          ConnectionState.waiting) {
+                        return const Center(
+                            child: CircularProgressIndicator());
                       }
                       if (snapshot.hasError || !snapshot.hasData) {
                         return const Text("No se pudieron cargar los actores.");
@@ -171,7 +232,8 @@ class _DetailPopularMovieState extends State<DetailPopularMovie> {
                             final actor = actors[index];
                             return Container(
                               width: 100,
-                              margin: const EdgeInsets.symmetric(horizontal: 8),
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 8),
                               child: Column(
                                 children: [
                                   CircleAvatar(
@@ -194,9 +256,7 @@ class _DetailPopularMovieState extends State<DetailPopularMovie> {
                                     actor.character,
                                     maxLines: 1,
                                     style: const TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.grey,
-                                    ),
+                                        fontSize: 12, color: Colors.grey),
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ],
