@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 
 class Actor {
-  final String name;         // Nombre del actor
-  final String character;    // Personaje que interpreta
-  final String profilePath;  // URL de su imagen de perfil
+  final String name;         
+  final String character;    
+  final String profilePath;  
 
   Actor({
     required this.name,
