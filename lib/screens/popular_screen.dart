@@ -23,34 +23,25 @@ class _PopularScreenState extends State<PopularScreen>{
   @override
   
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
       ),
       body: FutureBuilder(
         future: apiPopular!.getPopularMovies(),
         builder: (context, snapshot) {
-
           if (snapshot.hasData){
-
             return ListView.separated(
-
               padding: EdgeInsets.symmetric(horizontal: 10),
               separatorBuilder: (context, index) => SizedBox(height: 10,),
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
-                
                 return ItemPopular(snapshot.data![index]);
               },
             );
-            
           } else {
-
             if (snapshot.hasError) {
-
               return Center(child: Text(snapshot.error.toString()),);
             } else {
-
               return Center(child: CircularProgressIndicator(),);
             }
           }
@@ -58,7 +49,6 @@ class _PopularScreenState extends State<PopularScreen>{
       ),
     );
   }
-
 
   Widget ItemPopular(PopularModel popular){
 
