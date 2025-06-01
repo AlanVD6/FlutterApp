@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 
 class Trailer {
-  final String key;   // ID de video en YouTube
-  final String name;  // Nombre del tráiler
+  final String key;   
+  final String name;  
 
   Trailer({required this.key, required this.name});
 

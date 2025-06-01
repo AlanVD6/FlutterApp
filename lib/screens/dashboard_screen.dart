@@ -38,7 +38,7 @@ class DashboardScreen extends StatelessWidget{
         Navigator.pop(context);
         Navigator.pushNamed(context, '/contador');
       },
-      icon: Icons.add, 
+      icon: Icons.ads_click, 
       label: 'Contador'
     ),
     SidebarXItem(

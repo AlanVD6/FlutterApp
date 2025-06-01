@@ -72,7 +72,7 @@ class _PopularScreenState extends State<PopularScreen>{
         children: [
           FadeInImage(
             
-            placeholder: AssetImage('assets/PVtR.gif'), 
+            placeholder: AssetImage('assets/no_video.json'), 
             image: NetworkImage(popular.backdropPath),
           ),
 
