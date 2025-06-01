@@ -51,7 +51,7 @@ class DashboardScreen extends StatelessWidget{
     ),
     SidebarXItem(
     icon: Icons.favorite,
-    label: 'Favoritas',
+    label: 'Pelis Favoritas',
     onTap: () {
     Navigator.pop(context);
     Navigator.pushNamed(context, '/favorites');
