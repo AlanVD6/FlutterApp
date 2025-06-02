@@ -1,8 +1,15 @@
+// ============================
+// detail_popular_movie.dart
+// ============================
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_application_1/model/popular_model.dart';
 import 'package:flutter_application_1/network/api_actors.dart';
 import 'package:flutter_application_1/network/api_trailer.dart';
+import 'package:flutter_application_1/network/api_reviews.dart';
+import 'package:flutter_application_1/model/review_model.dart';
 import 'package:flutter_application_1/utils/favorite_service.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -17,6 +24,7 @@ class _DetailPopularMovieState extends State<DetailPopularMovie> {
   late PopularModel movie;
   late Future<List<Actor>> futureActors;
   late Future<Trailer?> futureTrailer;
+  late Future<List<Review>> futureReviews;
   YoutubePlayerController? _youtubeController;
   bool isFavorite = false;
 
@@ -26,6 +34,7 @@ class _DetailPopularMovieState extends State<DetailPopularMovie> {
     movie = ModalRoute.of(context)!.settings.arguments as PopularModel;
     futureActors = ApiActors().fetchActors(movie.id);
     futureTrailer = ApiTrailer().getTrailer(movie.id);
+    futureReviews = ApiReviews().fetchReviews(movie.id);
     isFavorite = FavoriteService.isFavorite(movie);
   }
 
@@ -37,12 +46,10 @@ class _DetailPopularMovieState extends State<DetailPopularMovie> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       body: Stack(
         children: [
-          // Fondo con imagen difuminada
           Positioned.fill(
             child: Image.network(
               movie.backdropPath,
@@ -52,8 +59,6 @@ class _DetailPopularMovieState extends State<DetailPopularMovie> {
               ),
             ),
           ),
-          
-          // Overlay oscuro para mejor legibilidad
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
@@ -64,25 +69,19 @@ class _DetailPopularMovieState extends State<DetailPopularMovie> {
                     Colors.black.withOpacity(0.3),
                     Colors.black.withOpacity(0.7),
                   ],
-                  
                 ),
               ),
             ),
           ),
-          
-          // Contenido principal
           SingleChildScrollView(
             child: Column(
               children: [
                 const SizedBox(height: kToolbarHeight + 20),
-                
-                // Miniatura de la película y título
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Mini imagen del poster
                       ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: Image.network(
@@ -98,10 +97,7 @@ class _DetailPopularMovieState extends State<DetailPopularMovie> {
                           ),
                         ),
                       ),
-                      
                       const SizedBox(width: 15),
-                      
-                      // Información básica
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -120,7 +116,6 @@ class _DetailPopularMovieState extends State<DetailPopularMovie> {
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
-                                // Botón de favoritos a la derecha del título
                                 IconButton(
                                   icon: Icon(
                                     isFavorite ? Icons.favorite : Icons.favorite_border,
@@ -134,19 +129,30 @@ class _DetailPopularMovieState extends State<DetailPopularMovie> {
                                     });
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
-                                        content: Text(isFavorite 
-                                            ? 'Añadido a favoritos' 
+                                        content: Text(isFavorite
+                                            ? 'Añadido a favoritos'
                                             : 'Removido de favoritos'),
                                         duration: const Duration(seconds: 1),
                                       ),
                                     );
                                   },
                                 ),
+                                IconButton(
+                                  icon: const Icon(Icons.share, color: Colors.white, size: 30),
+                                  onPressed: () {
+                                    final url = 'https://www.themoviedb.org/movie/${movie.id}';
+                                    Clipboard.setData(ClipboardData(text: url));
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Text('Enlace copiado'),
+                                        duration: Duration(seconds: 2),
+                                      ),
+                                    );
+                                  },
+                                ),
                               ],
                             ),
-                            
                             const SizedBox(height: 8),
-                            
                             Row(
                               children: [
                                 RatingBarIndicator(
@@ -168,9 +174,7 @@ class _DetailPopularMovieState extends State<DetailPopularMovie> {
                                 ),
                               ],
                             ),
-                            
                             const SizedBox(height: 8),
-                            
                             Text(
                               "Lanzamiento: ${movie.releaseDate}",
                               style: const TextStyle(
@@ -178,7 +182,6 @@ class _DetailPopularMovieState extends State<DetailPopularMovie> {
                                 fontSize: 14,
                               ),
                             ),
-                            
                             Text(
                               "Idioma: ${movie.originalLanguage.toUpperCase()}",
                               style: const TextStyle(
@@ -192,10 +195,7 @@ class _DetailPopularMovieState extends State<DetailPopularMovie> {
                     ],
                   ),
                 ),
-                
                 const SizedBox(height: 20),
-                
-                // Sección del tráiler
                 FutureBuilder<Trailer?>(
                   future: futureTrailer,
                   builder: (context, snapshot) {
@@ -205,7 +205,6 @@ class _DetailPopularMovieState extends State<DetailPopularMovie> {
                         child: CircularProgressIndicator(),
                       );
                     }
-                    
                     if (!snapshot.hasData || snapshot.data == null) {
                       return const Padding(
                         padding: EdgeInsets.all(20),
@@ -215,7 +214,6 @@ class _DetailPopularMovieState extends State<DetailPopularMovie> {
                         ),
                       );
                     }
-                    
                     final trailer = snapshot.data!;
                     _youtubeController ??= YoutubePlayerController(
                       initialVideoId: trailer.key,
@@ -224,7 +222,6 @@ class _DetailPopularMovieState extends State<DetailPopularMovie> {
                         mute: false,
                       ),
                     );
-                    
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Column(
@@ -238,9 +235,7 @@ class _DetailPopularMovieState extends State<DetailPopularMovie> {
                               color: Colors.white,
                             ),
                           ),
-                          
                           const SizedBox(height: 10),
-                          
                           ClipRRect(
                             borderRadius: BorderRadius.circular(12),
                             child: YoutubePlayer(
@@ -258,10 +253,7 @@ class _DetailPopularMovieState extends State<DetailPopularMovie> {
                     );
                   },
                 ),
-                
                 const SizedBox(height: 20),
-                
-                // Descripción
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
@@ -275,9 +267,7 @@ class _DetailPopularMovieState extends State<DetailPopularMovie> {
                           color: Colors.white,
                         ),
                       ),
-                      
                       const SizedBox(height: 10),
-                      
                       Text(
                         movie.overview,
                         style: const TextStyle(
@@ -289,10 +279,7 @@ class _DetailPopularMovieState extends State<DetailPopularMovie> {
                     ],
                   ),
                 ),
-                
                 const SizedBox(height: 25),
-                
-                // Actores
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
@@ -306,25 +293,19 @@ class _DetailPopularMovieState extends State<DetailPopularMovie> {
                           color: Colors.white,
                         ),
                       ),
-                      
                       const SizedBox(height: 10),
-                      
                       FutureBuilder<List<Actor>>(
                         future: futureActors,
                         builder: (context, snapshot) {
                           if (snapshot.connectionState == ConnectionState.waiting) {
-                            return const Center(
-                              child: CircularProgressIndicator(),
-                            );
+                            return const Center(child: CircularProgressIndicator());
                           }
-                          
                           if (snapshot.hasError || !snapshot.hasData || snapshot.data!.isEmpty) {
                             return const Text(
                               'Información de actores no disponible',
                               style: TextStyle(color: Colors.white70),
                             );
                           }
-                          
                           final actors = snapshot.data!;
                           return SizedBox(
                             height: 180,
@@ -347,9 +328,7 @@ class _DetailPopularMovieState extends State<DetailPopularMovie> {
                                             ? const Icon(Icons.person, size: 40, color: Colors.white)
                                             : null,
                                       ),
-                                      
                                       const SizedBox(height: 8),
-                                      
                                       Text(
                                         actor.name,
                                         style: const TextStyle(
@@ -360,7 +339,6 @@ class _DetailPopularMovieState extends State<DetailPopularMovie> {
                                         textAlign: TextAlign.center,
                                         overflow: TextOverflow.ellipsis,
                                       ),
-                                      
                                       Text(
                                         actor.character,
                                         style: const TextStyle(
@@ -382,13 +360,48 @@ class _DetailPopularMovieState extends State<DetailPopularMovie> {
                     ],
                   ),
                 ),
-                
+                const SizedBox(height: 25),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Comentarios',
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                      ),
+                      const SizedBox(height: 10),
+                      FutureBuilder<List<Review>>(
+                        future: futureReviews,
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState == ConnectionState.waiting) {
+                            return const Center(child: CircularProgressIndicator());
+                          }
+                          if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                            return const Text('No hay comentarios disponibles', style: TextStyle(color: Colors.white70));
+                          }
+                          return Column(
+                            children: snapshot.data!.map((review) => Padding(
+                              padding: const EdgeInsets.only(bottom: 10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('- ${review.author}', style: const TextStyle(color: Colors.amberAccent, fontWeight: FontWeight.bold)),
+                                  const SizedBox(height: 4),
+                                  Text(review.content, style: const TextStyle(color: Colors.white70)),
+                                ],
+                              ),
+                            )).toList(),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
                 const SizedBox(height: 30),
               ],
             ),
           ),
-          
-          // AppBar transparente
           Positioned(
             top: 0,
             left: 0,
